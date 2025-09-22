@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  app_relacao_palette:
+    build: .
+    ports:
+      - 3001:3001
+    environment:
+      - TZ=America/Sao_Paulo

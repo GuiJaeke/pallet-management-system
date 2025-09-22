@@ -1,0 +1,708 @@
+* {
+  font-family: verdana;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#navbar {
+  background-color: #383838;
+  color: #fff;
+  width: 100%;
+  height: fit-content;
+  margin-bottom: 1em;
+}
+
+@media (max-width: 1900px) {
+  #navbar ul {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #navbar ul li {
+    
+    font-size: 24px;
+    font-weight: 300;
+  }
+
+  #navbar ul li a {
+    margin: 10px 20px;
+    color: white;
+    text-decoration: none;
+  }
+
+  .link-header {
+    position: relative;
+    display: inline-block;
+    padding: 2px 5px;
+    text-decoration: none;
+    color: #333;
+  }
+
+  .link-header::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+  }
+
+  .link-header:hover::after {
+    width: 100%;
+  }
+}
+
+#navbar ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+#navbar ul li {
+  font-size: 24px;
+  font-weight: 550;
+}
+
+#navbar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.additem {
+  width: 270px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.additem form input[type='text'],
+input[type='number'] {
+  font-size: 24px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  border-style: solid;
+  border-left: 0px;
+  border-right: 0px;
+  border-top: 0px;
+  width: 200px;
+  height: 40px;
+}
+
+.additem form input[type='submit'] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.7em 1.5em;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color .3s ease;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.additem form input[type='disabled'] {
+  background-color: #5e5e5e;
+  color: #fff;
+  padding: 0.7em 1.5em;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color .3s ease;
+  width: 200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.additem form input[type='submit']:hover {
+  background-color: #0453a8;
+}
+
+.paletes {
+  border: 1px solid #000000;
+  font-size: 20px;
+  margin: 10px auto;
+  width: 50%;
+  max-width: 800px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  color: #333;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.paletes span {
+  margin-bottom: 1px;
+}
+
+.paletes a {
+  background: #000000;
+  color: #fff;
+  padding: 0.5em 0.5em;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  text-decoration: none;
+  font-size: 14px;
+  text-align: center;
+}
+
+.paletes a:hover {
+  transform: scale(1.05);
+}
+
+.paletes .rowPalete {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
+
+
+li {
+  list-style-type: none;
+}
+
+.d-none {
+  display: none;
+}
+
+
+.tableFormPalete {
+  width: 90%;
+  padding: 10px;
+  margin: 0 auto;
+  background-color: black;
+  border-radius: 10px;
+  box-shadow: 0 2rem 3rem rgba(0, 0, 0, 0.486);
+}
+
+
+.tableFormPalete .thead th {
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.tableFormPalete td {
+  margin: 2px;
+  border: 1px black solid;
+  background-color: white;
+}
+
+.table1 {
+  border: 1px;
+  border-style: solid;
+  margin: 0 auto;
+  background-color: black;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.table1 th {
+  border: 0px;
+  font-size: 24px;
+  border-style: solid;
+  color: white;
+}
+
+.table1 td {
+  border: 1px;
+  border-style: solid;
+  color: rgb(0, 0, 0);
+  background-color: white;
+  max-height: 50px;
+  /* text-align: center; */
+}
+
+.foot {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 24px;
+  height: 2em;
+}
+
+.addpalete form {
+  width: 270px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.addpalete form input[type='text'],
+input[type='date'],
+select {
+  font-size: 18px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  border-style: solid;
+  border-left: 0px;
+  border-right: 0px;
+  border-top: 0px;
+  width: 300px;
+  height: 60px;
+}
+
+.addpalete form input[type='submit'] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.7em 1.5em;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 305px;
+  margin: 0 auto;
+}
+
+.addpalete form input[type='submit']:hover {
+  background-color: #0056b3;
+}
+
+h1 {
+  text-align: center;
+
+}
+
+.sub {
+  margin-left: 40%;
+  margin-bottom: 10px;
+}
+
+.print {
+  display: flex;
+  justify-content: center;
+}
+
+.codi {
+  max-width: 10%;
+  font-size: 25PX;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow-x: hidden;
+  padding: 2px;
+}
+
+.descr {
+  max-width: 20%;
+  font-size: 20px;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
+.codf {
+  width: 10%;
+  font-size: 22px;
+}
+
+.loc {
+  max-width: 2%;
+  font-size: 30px;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
+.quant {
+  width: 5%;
+  font-size: 30px;
+}
+
+.codi2 {
+  text-align: center;
+  font-size: 45PX;
+  width: 10%;
+}
+
+.descr2 {
+  width: auto;
+  font-size: 15PX;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
+.descr3 {
+  max-width: 8em;
+  font-size: 20PX;
+  padding: 10px;
+  overflow: hidden;
+  max-height: 30px;
+  white-space: nowrap;
+}
+
+.codf2 {
+  font-size: 15PX;
+  width: 10%;
+  text-align: center;
+}
+
+.loc2 {
+  max-width: 50px;
+  font-size: 45px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.quant2 {
+  font-size: 25PX;
+  text-align: center;
+  width: 6%;
+}
+
+
+
+.rowPrint {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 120px;
+}
+.delete {
+  width: 125px;
+  margin: 0 auto;
+}
+
+.delete form input[type='submit'] {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 0.7em 1.5em;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.delete form input[type='submit']:hover {
+  background-color: #790202;
+}
+
+.delete form input[type='submit']:disabled {
+  background-color: #5e5e5e;
+  color: #fff;
+  padding: 0.7em 1.5em;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+@keyframes piscando {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 0;
+  }
+
+  80% {
+    opacity: 1
+  }
+
+}
+
+/* Aplicar a animação ao texto */
+.texto-piscando {
+  font-size: 30px;
+  font-weight: bold;
+  color: red;
+  animation: piscando 3s;
+  /* Duração de 3 segundo, repetindo infinitamente */
+  margin-bottom: 20px;
+}
+
+@keyframes head {
+  from {
+    opacity: 0;
+    transform: translateX(-130px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.anim {
+  animation-duration: 3s;
+  /* Duração da animação de 3 segundos */
+  animation-delay: 5ms;
+  /* Atraso inicial da animação de 5 milissegundos */
+  animation-name: head;
+  /* Nome da animação definida por @keyframes */
+}
+
+@keyframes totop {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.anim2 {
+  animation-duration: .8s;
+  /* Duração da animação de 3 segundos */
+  animation-delay: 5ms;
+  /* Atraso inicial da animação de 5 milissegundos */
+  animation-name: totop;
+  /* Nome da animação definida por @keyframes */
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+@media print {
+  .esconder-impressao {
+    display: none;
+  }
+}
+
+.headPrint {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 25px;
+}
+
+.headPrint p {
+  margin-left: 50px;
+  font-size: 20px;
+  min-width: 400px;
+  max-height: 25px;
+  margin-right: 30%;
+}
+
+.editItem {
+  display: flex;
+  flex-direction: row;
+  max-height: 30px;
+  max-width: 8%;
+}
+
+.editItem input {
+  width: 5rem;
+  border-bottom: 0px;
+  max-height: 30px;
+}
+
+.editItem form input[type='submit'] {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  height: 10em;
+  max-height: 30px;
+  align-self: center;
+  padding: 0 5px;
+  transition: background-color .3s ease;
+}
+
+.editItem form input[type='submit']:hover {
+  background-color: #0453a8;
+}
+
+.editItem form input[type='submit']:disabled {
+  background-color: #5e5e5e;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  margin: 10px;
+}
+
+.pesquisa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24px;
+  padding: 5px;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #333;
+}
+
+.pesquisa select {
+  padding: 2px;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  font-size: 20px;
+  color: #000000;
+}
+
+.search {
+  width: 100%;
+  max-width: 300px;
+  margin: 10px auto;
+  padding: 10px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  background: #f9f9f9;
+  animation-duration: .8s;
+  /* Duração da animação de 3 segundos */
+  animation-delay: 5ms;
+  /* Atraso inicial da animação de 5 milissegundos */
+  animation-name: totop;
+}
+
+.search form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.search form input[type='text'],
+.search form input[type='date'],
+.search form select,
+.search form input[type='password'] {
+  font-size: 14px;
+  padding: 8px;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  width: 20em;
+}
+
+.search form input[type='submit'] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.3em 0.8em;
+  font-weight: bold;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.search form input[type='submit']:hover {
+  transform: scale(1.03);
+  background-color: #0056b3;
+}
+
+.title.texto-piscando {
+  color: #dc3545;
+  animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.codunico {
+  font-size: 150px;
+  margin-bottom: 30px;
+}
+
+.descrunico {
+  font-size: 50px;
+  margin-bottom: 30px;
+}
+
+.modunico {
+  font-size: 75px;
+  margin-bottom: 30px;
+}
+
+.qtdunico {
+  font-size: 100px;
+  margin-bottom: 30px;
+}
+
+.dataunico {
+  font-size: 60px;
+
+}
+
+.confunico {
+  font-size: 30px;
+  margin-left: 5%;
+  margin-top: 20px;
+}
+
+.codfor {
+  font-size: 20px;
+  margin-left: 10%;
+  margin-top: 25px;
+}
+
+.rodape {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.linha {
+  padding: 10px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.multItem {
+  display: flex;
+  flex-direction: row;
+}
+
+.multItem input {
+  width: 4rem;
+  border-bottom: 0px;
+  height: 2rem;
+  margin-top: 5px;
+}
+
+.multItem form input[type='submit'] {
+  background-color: #ff0000;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  margin: 2px;
+  margin-top: 5PX;
+  transition: background-color .3s ease;
+
+}
+
+.multItem form input[type='submit']:hover {
+  background-color: #790202;
+}

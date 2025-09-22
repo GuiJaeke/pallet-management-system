@@ -1,0 +1,31 @@
+<h1 class="title texto-piscando d-none" id="error">Escolha um Conferente!</h1>
+<div class="addpalete">
+    <form action="/palete/add" method="post" id="form">
+        <div class="">
+
+            <label for="name">Conferente:</label>
+            <select class="form-select" name="name" id="name">
+                <option value="Sel">Selecionar Conferente</option>
+                {{#each conferente}}
+                    <option value="{{this.nome}}">{{this.nome}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="">
+            <label for="title">Identificador do palete:</label>
+            <input type="text" name="title" placeholder="EX: Palete de corrente maxx">
+        </div>
+        <input type="submit" value="Cadastrar" class="">
+    </form>
+</div>
+<script>
+    document.getElementById('form').addEventListener('submit', function (evento) {
+        const select = document.getElementById('name').value
+        if (select == 'Sel') {
+            document.getElementById('error').classList.remove('d-none')
+            evento.preventDefault()
+            return 
+        }
+        
+    })
+</script>

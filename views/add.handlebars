@@ -1,0 +1,216 @@
+{{#if error}}
+<h1 class="title texto-piscando">Preencha todos os campos!</h1>
+{{else}}
+{{/if}}
+{{#if errorsql}}
+<h1 class="title texto-piscando">Item não encontrado!</h1>
+{{else}}
+{{/if}}
+{{#if errorsql2}}
+<h1 class="title texto-piscando">Item não cadastrado na base de dados, entrar em contato com o suporte!</h1>
+{{else}}
+{{/if}}
+<div class="additem">
+    <form action="/palete/{{palete.id}}" method="post" class="additem" id="form">
+        <div class="pesq-item">
+            <label for="codinterno"></label>
+            <input type="text" name="codinterno" id="codinterno" placeholder="Digite o código" maxlength="6">
+        </div>
+        <div class="pesq-item">
+            <label for="quant"></label>
+            <input type="number" name="quant" id="quant" placeholder="Quantidade">
+        </div>
+        {{#if palete.printPage}}
+        <input type="disabled" value="Adicionar item">
+        {{else}}
+        <input type="submit" value="Adicionar item" id="formItem">
+        {{/if}}
+
+    </form>
+</div>
+{{#if palete.printPage}}
+<h1>Palete já impresso não pode ser alterado!</h1>
+<input type="hidden" name="print" id="print" value="{{palete.printPage}}">
+<div class="search">
+    <form action="/palete/editplt/{{palete.id}}" method="post" id="modplt">
+        <input type="hidden" name="name" value="{{palete.name}}">
+        <input type="hidden" name="data" value="{{datas}}">
+        <input type="password" name="senha" id="senha" value="">
+        <input type="submit" value="Modificar Palete">
+    </form>
+</div>
+<h1>#{{palete.id}}</h1>
+{{else}}
+<h1>#{{palete.id}}</h1>
+<input type="hidden" name="print" id="print" value="{{palete.printPage}}">
+{{/if}}
+
+<table class="tableFormPalete" id="">
+    <thead class="thead">
+        <tr>
+            <th scope="" class="">CÓDIGO</th>
+            <th scope="" class="">DESCRIÇÃO</th>
+            <th scope="" class="">MODELO</th>
+            <th scope="" class="">COD. FORNECEDOR</th>
+            <th scope="" class="">LOCAÇÃO</th>
+            <th scope="" class="">QUANTIDADE</th>
+            <th scope="" class="">DELETAR</th>
+        </tr>
+    </thead>
+    <tbody class="tbody">
+        {{#each codloc}}
+        <tr>
+            <td class="codi" style="text-align: center;">{{this.item.codinterno}}</td>
+            <td class="descr">{{this.item.descr}}</td>
+            <td class="descr3">{{this.item.modelo}}</td>
+            <td class="codf">{{this.item.codfor}}</td>
+            <td class="loc" id="tloc" style="text-align: center;">{{this.item.tloc}}</td>
+            <td class="quant">
+                <div class="editItem">
+                    <form action="/palete/edit/{{this.paleteid}}" method="post" class="editItem" id="quantForm">
+                        <input type="hidden" name="codInterno" value="{{this.item.codinterno}}">
+                        <input type="hidden" name="palete" value="{{this.paleteid}}">
+                        <input type="number" name="newQuant" id="newQuant" value="{{this.qtd}}">
+                        {{#if this.printPage}}
+                        <input type="submit" value="Editar QTD" disabled>
+                        {{else}}
+                        <input type="submit" value="Editar QTD">
+                        {{/if}}
+                    </form>
+                </div>
+            </td>
+            <th class="delete">
+                <form action="/palete/delItem/{{this.paleteid}}" method="post" class="delete">
+                    <input type="hidden" name="codInterno" value="{{this.item.codinterno}}">
+                    <input type="hidden" name="palete" value="{{this.paleteid}}">
+                    {{#if this.printPage}}
+                    <input type="submit" value="Excluir" disabled>
+                    {{else}}
+                    <input type="submit" value="Excluir">
+                    {{/if}}
+                </form>
+            </th>
+        </tr>
+        {{/each}}
+    </tbody>
+    <tfoot class="foot">
+        <tr>
+            <TH><STRONG></STRONG></TH>
+            <TH style="font-size: 0.8;">CONFERENTE: {{palete.name}}</TH>
+            <TH><strong></strong></TH>
+            <TH><STROng>DATA:</STROng></TH>
+            <TH style="font-size: 0.7em;">{{datas}}</TH>
+            <TH><STROng style="font-size: 14px;">MULTIPLICAR</STROng></TH>
+            <TH>
+                <div class="multItem">
+                    <form action="/palete/mult/{{palete.id}}" method="post" class="editItem" id="multForm">
+                        {{#each codloc}}
+                        <input type="hidden" name="pltcodinterno" id="pltcodinterno" value="{{this.item.codinterno}}">
+                        <input type="hidden" name="quant" value="{{this.qtd}}">
+                        {{/each}}
+                        <input type="hidden" name="palete" value="{{palete.id}}">
+                        <input type="hidden" name="name" value="{{palete.name}}">
+                        <input type="hidden" name="title" value="{{palete.title}}">
+                        <input type="number" name="vezes" id="vezes" value="">
+                        <input type="submit" value="VEZES">
+                    </form>
+                </div>
+            </TH>
+        </tr>
+    </tfoot>
+</table>
+<br>
+<br>
+<h1>Histórico</h1>
+<br>
+{{#each logs}}
+<div class="paletes anim2">
+    <span><strong>Conferente:</strong> {{this.nameLog}}</span>
+    <span><strong>Data:</strong> {{this.dataLog}}</span>
+</div>
+{{/each}}
+<div class="rowPrint">
+
+    {{#if palete.printPage}}
+    <button type="button" id="imprimir" class="btn btn-primary" data-bs-toggle="modal">
+        <svg xmlns="http://www.w3.org/2000/svg" height="108px" viewBox="0 -960 960 960" width="108px" fill="#000000">
+            <path
+                d="M658-648v-132H302v132h-60v-192h476v192h-60Zm-518 60h680-680Zm599 95q12 0 21-9t9-21q0-12-9-21t-21-9q-12 0-21 9t-9 21q0 12 9 21t21 9Zm-81 313v-192H302v192h356Zm60 60H242v-176H80v-246q0-45.05 30.5-75.53Q141-648 186-648h588q45.05 0 75.53 30.47Q880-587.05 880-542v246H718v176Zm102-236v-186.21Q820-562 806.78-575q-13.23-13-32.78-13H186q-19.55 0-32.77 13.22Q140-561.55 140-542v186h102v-76h476v76h102Z" />
+        </svg>
+    </button>
+
+    <script>document.getElementById('imprimir').addEventListener('click', function () {
+            console.log('Imprimindo...')
+            window.location.href = '/palete/print/{{palete.id}}';
+        });</script>
+    {{else}}
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ConfirmPrintModal">
+        <svg xmlns="http://www.w3.org/2000/svg" height="108px" viewBox="0 -960 960 960" width="108px" fill="#000000">
+            <path
+                d="M658-648v-132H302v132h-60v-192h476v192h-60Zm-518 60h680-680Zm599 95q12 0 21-9t9-21q0-12-9-21t-21-9q-12 0-21 9t-9 21q0 12 9 21t21 9Zm-81 313v-192H302v192h356Zm60 60H242v-176H80v-246q0-45.05 30.5-75.53Q141-648 186-648h588q45.05 0 75.53 30.47Q880-587.05 880-542v246H718v176Zm102-236v-186.21Q820-562 806.78-575q-13.23-13-32.78-13H186q-19.55 0-32.77 13.22Q140-561.55 140-542v186h102v-76h476v76h102Z" />
+        </svg>
+    </button>
+    {{/if}}
+    <form action="/palete/printetq/{{palete.id}}" class="btn btn-primary" method="post" id="etq">
+        <input type="hidden" name="data" value="{{datas}}">
+        <input type="hidden" name="hora" value="{{hora}}">
+        <button type="submit" style="background-color: #0057b300; border:none;"><svg xmlns="http://www.w3.org/2000/svg"
+                height="108px" viewBox="0 -960 960 960" width="108px" fill="#000000">
+                <path
+                    d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h680q24 0 42 18t18 42v520q0 24-18 42t-42 18H140Zm107-194h42v-252h-32l-73 49 21 33 42-28v198Zm133 0h163v-38H434v-2q14-12 30.5-26.5T494-448q21-20 33-38.5t12-44.5q0-32-22-53.5T460-606q-30 0-50.5 14T379-555l38 18q5-11 17-19t26-8q18 0 28 10t10 24q0 20-10 33.5T461-468q-23 21-40.5 37T380-393v39Zm314 0q36 0 59.5-17.5T777-426q0-25-13-41t-34-18v-1q19-6 28.5-19.5T768-541q0-30-21.5-47.5T693-606q-22 0-42 12t-33 35l34 18q8-11 18.5-17.5T693-565q15 0 24.5 8.5T727-533q0 17-11.5 23t-30.5 6h-14v39h15q19 0 34.5 10t15.5 29q0 18-11.5 27.5T694-389q-15 0-29-10t-20-27l-35 13q8 27 28.5 43t55.5 16ZM140-220h680v-520H140v520Zm0 0v-520 520Z" />
+            </svg></button>
+    </form>
+</div>
+<!-- Modal Confirm Print -->
+<div class="modal fade" id="ConfirmPrintModal" tabindex="-1" aria-labelledby="ConfirmPrintModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ConfirmPrintModal">Confirme a impressão</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Tem certeza que deseja imprimir? após a impressão não será mais possível a adição e edição de itens!
+            </div>
+            <div class="modal-buttons modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button id="imprimir" class="btn btn-primary">Imprimir</button>
+                <script>document.getElementById('imprimir').addEventListener('click', function () {
+                        console.log('Imprimindo...')
+                        window.location.href = '/palete/print/{{palete.id}}';
+                    });</script>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/palete.js"></script>
+<script>
+    const list = []
+    { { #each codloc } }
+    list.push({{ this.item.codinterno }})
+    { {/each } }
+    const multPaletesForm = document.getElementById('multForm').addEventListener('submit', function (evento) {
+        const vezes = document.getElementById('vezes').value
+        if (vezes > 30) {
+            evento.preventDefault();
+            return alert('Quantidade máxima: 30')
+        }
+        if (vezes < 1) {
+            evento.preventDefault();
+            return alert('Quantidade Mínima: 1')
+        }
+        if (list.length < 1) {
+            evento.preventDefault();
+            return alert('Palete deve ter 1 item!')
+        }
+        if (list.length >= 2) {
+            evento.preventDefault();
+            return alert('Só é permitido para paletes que possuem apenas um item!')
+        }
+        console.log(list)
+    })
+    document.getElementById('imprimir').addEventListener('click', function () {
+        console.log('Imprimindo...')
+
+    });
+</script>

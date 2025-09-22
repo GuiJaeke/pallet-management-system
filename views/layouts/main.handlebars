@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{#if title}}<title>{{palete.id}}</title>{{else}}<title>Relação de itens no palete</title>{{/if}}
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    {{#if print}}
+    {{else}}
+    <nav id="navbar">
+        <ul>
+
+            <li><a class="link-header" href="/palete/home">VER PALETES</a></li>
+            <div class="centerNav"><li><a class="link-header" href="/palete/add/">NOVO PALETE</a></li></div>
+            
+            {{#if title}}
+            <li><img src="/img/jaeke.png" alt="Imagem não encontrada" width="130px"> 
+            {{else}}
+            <li class="anim"><img src="/img/jaeke.png" alt="Imagem não encontrada" width="130px"></li>
+            {{/if}}
+        </ul>
+    </nav>
+    {{/if}}
+    <div class="">
+        {{{body}}}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

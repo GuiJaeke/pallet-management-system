@@ -1,0 +1,110 @@
+<div class="headPrint">
+    <p><strong>Relação de itens no palete</strong></p>
+    <p><strong>Locação Excesso__________________________</strong></p>
+    <br>
+</div>
+<h1 class="title">#{{palete.id}}</h1>
+<h1 class="title">{{palete.title}}</h1>
+{{#if paleteGrande}}
+<input type="hidden" id="paleteGrande" value="true">
+{{else}}
+<input type="hidden" id="paleteGrande" value="false">
+{{/if}}
+{{#if unicoItem}}
+<input type="hidden" id="unicoItem" value="true">
+{{else}}
+<input type="hidden" id="unicoItem" value="false">
+{{/if}}
+{{#if unicoItem}}
+<div class="linha">
+    <h1 class="codunico">{{printItemUnico.item.codinterno}}</h1>
+    <h1 class="descrunico">{{printItemUnico.item.descr}}</h1>
+    <h1 class="modunico">{{printItemUnico.item.modelo}}</h1>
+    <h1 class="qtdunico">{{printItemUnico.qtd}}</h1>
+    <div class="rodape">
+        <h1 class="dataunico">{{datas}}</h1>
+        <h1 class="confunico"><strong>CONFERENTE: </strong>{{palete.name}}</h1>
+        <h1 class="codfor">{{printItemUnico.item.codfor}}</h1>
+    </div>
+</div>
+{{else}}
+<table class="table1" id="">
+    <thead class="">
+        <tr>
+            <th scope="" class="">CÓDIGO</th>
+            <th scope="" class="">DESCRIÇÃO</th>
+            <th scope="" class="">MODELO</th>
+            <th scope="" class="">COD. FORN.</th>
+            <th scope="" class="">LC FISICO</th>
+            <th scope="" class="">QTD</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#if paleteGrande}}
+        {{#each codloc}}
+        <tr>
+            <td class=""><strong>{{this.item.codinterno}}</strong></td>
+            <td class="">{{this.item.descr}}</td>
+            <td class="">{{this.item.modelo}}</td>
+            <td class="">{{this.item.codfor}}</td>
+            <td class=""><strong>{{this.item.tloc}}</strong></td>
+            <td class=""><strong>{{this.qtd}}</strong></td>
+        </tr>
+        {{/each}}
+        {{else}}
+        {{#each codloc}}
+        <tr>
+            <td class="codi2"><strong>{{this.item.codinterno}}</strong></td>
+            <td class="descr2">{{this.item.descr}}</td>
+            <td class="descr3">{{this.item.modelo}}</td>
+            <td class="codf2">{{this.item.codfor}}</td>
+            <td class="loc2" id="tloc"><strong>{{this.item.tloc}}</strong></td>
+            <td class="quant2"><strong>{{this.qtd}}</strong></td>
+        </tr>
+        {{/each}}
+        {{/if}}
+    </tbody>
+    <tfoot class="foot">
+        <tr>
+            <TH><STRONG>CONFERENTE:</STRONG></TH>
+            <TH>{{palete.name}}</TH>
+            <TH><strong></strong></TH>
+            <TH><STROng>DATA:</STROng></TH>
+            <TH>{{datas}}</TH>
+        </tr>
+    </tfoot>
+</table>
+<h1>Total de itens no palete: {{codloc.length}}</h1>
+{{/if}}
+
+
+<div class="print" id="nImp">
+    <a href="/palete/home"><svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
+            fill="#000000">
+            <path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z" />
+        </svg></a>
+    <button onclick="esconderItensParaImpressao()"><svg xmlns="http://www.w3.org/2000/svg" height="48px"
+            viewBox="0 -960 960 960" width="48px" fill="#000000">
+            <path
+                d="M658-648v-132H302v132h-60v-192h476v192h-60Zm-518 60h680-680Zm599 95q12 0 21-9t9-21q0-12-9-21t-21-9q-12 0-21 9t-9 21q0 12 9 21t21 9Zm-81 313v-192H302v192h356Zm60 60H242v-176H80v-246q0-45.05 30.5-75.53Q141-648 186-648h588q45.05 0 75.53 30.47Q880-587.05 880-542v246H718v176Zm102-236v-186.21Q820-562 806.78-575q-13.23-13-32.78-13H186q-19.55 0-32.77 13.22Q140-561.55 140-542v186h102v-76h476v76h102Z" />
+        </svg></button>
+</div>
+
+<script>
+    window.print(esconderItensParaImpressao());
+    function esconderItensParaImpressao() {
+
+        document.getElementById('nImp').classList.add('esconder-impressao');
+
+        window.print();
+    }
+    const elementos = document.querySelectorAll('#tloc'); // Seleciona todos com a classe 'loc'
+
+    elementos.forEach(function (elemento) {
+        console.log(elemento.innerText.length)
+        if (elemento.innerText.length > 6) {
+
+            elemento.style.fontSize = '1.5em';  // Aplica o estilo desejado
+        }
+    });
+</script>

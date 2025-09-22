@@ -1,0 +1,131 @@
+
+<div class="pesquisa" class="pesquisa">
+    <div>
+        <label for="pesquisa"><strong>Pesquisar por:</strong></label>
+        <select name="pesquisa" id="pesquisa">
+            <option value="selecione">Selecione</option>
+            <option value="data">Data</option>
+            <option value="id">Palete</option>
+            <option value="item">Item</option>
+        </select>
+    </div>
+        {{#if itemNaoExiste}} <h1 class="title texto-piscando">Item não encontrado!</h1>{{/if}}
+        {{#if pltNaoExiste}} <h1 class="title texto-piscando">Palete não encontrado!</h1>{{/if}}
+        {{#if errordata}} <h1 class="title texto-piscando">Data de inicio maior que a data final!</h1>{{/if}}
+    <div class="search d-none" id="data">
+        <form action="/palete/home/data" method="post">
+            <label for="data"><strong>Data de inicio</strong></label>
+            {{#if datainicio}}
+            <input type="date" name="data" id="dataSim" value="{{datainicio}}" min="2024-01-01" max="2050-01-01">
+            {{else}}
+            <input type="date" name="data" id="dataNao" value="" min="2024-01-01" max="2050-01-01">
+            {{/if}}
+            <label for="data"><strong>Data final</strong></label>
+            <input type="date" name="datafim" id="datafim" value="" min="2024-01-01" max="2050-01-01">
+            <input type="submit" value="Pesquisar">
+        </form>
+    </div>
+    <div class="search d-none" id="id">
+        <form action="/palete/home/byid" method="post">
+            <input type="text" name="palete" id="palete" placeholder="insira a numeração do palete">
+            <input type="submit" value="Pesquisar">
+        </form>
+    </div>
+    <div class="search d-none" id="item">
+        <form action="/palete/home/byitem" method="post">
+            <input type="text" name="item" id="item" placeholder="insira o código do item" maxlength="6">
+            <input type="submit" value="Pesquisar">
+        </form>
+    </div>
+</div>
+
+{{#if novosPaletes}}
+<input type="hidden" name="plt" id="plt" value="true">
+{{else}}
+<input type="hidden" name="plt" id="plt" value="false">
+{{/if}}
+{{#each novosPaletes}}
+<input type="hidden" class="id" name="plt" id="id" value="{{this}}">
+{{/each}}
+{{#if pesquisaid}}
+<div class="paletes anim2">
+    <span><strong>Palete:</strong> #{{paletes.id}}</span>
+    <span><strong>Conferente:</strong> {{paletes.name}}</span>
+    <span><strong>Título:</strong> {{paletes.title}}</span>
+    <span><strong>Data:</strong> {{data}}</span>
+    <a href="/palete/{{paletes.id}}" style="text-align: center;">Ver Palete</a>
+</div>
+{{else}}
+<h2 style="text-align: center;"><strong style="color: #000000">Total de paletes: </strong>{{paletes.length}}</h2>
+{{#each paletes}}
+<div class="paletes anim2">
+    <div class="column">
+        <span><strong>Palete:</strong> #{{this.id}}</span>
+        <span><strong>Conferente:</strong> {{this.name}}</span>
+        <span><strong>Título:</strong> {{this.title}}</span>
+        <span><strong>Data:</strong> {{this.createdAt}}</span>
+    </div>
+    <div class="rowPalete">
+        <a href="/palete/{{this.id}}">Ver Palete</a>
+        <a target="_blank" href="/palete/print/{{this.id}}">Imprimir</a>
+    </div>
+</div>
+{{/each}}
+{{/if}}
+
+</div>
+<script>
+    const novospaletes = document.getElementById("plt").value
+    const list = []
+    if (novospaletes == "true") {
+        {{#each novosPaletes}}
+        list.push({{ this}})
+    {{/each }}
+    const resposta = confirm(`Novos paletes criados: ${list}, Deseja imprimir todos os paletes?`)
+    if (resposta) {
+        {{#each novosPaletes}}
+        window.open("/palete/print/{{this}}", "_blank", "width=1100,height=800");
+        {{/each }}
+    }
+
+    window.location.href = "/palete/home/";
+    }
+    function obterDataAtual() {
+        const hoje = new Date();
+        const ano = hoje.getFullYear();
+        const mes = String(hoje.getMonth() + 1).padStart(2, '0'); // Adiciona zero à esquerda se necessário
+        const dia = String(hoje.getDate()).padStart(2, '0');       // Adiciona zero à esquerda se necessário
+        return `${ano}-${mes}-${dia}`;
+    }
+    function obterDataAtual2() {
+        const hoje = new Date();
+        const ano = hoje.getFullYear();
+        const mes = String(hoje.getMonth() + 1).padStart(2, '0'); // Adiciona zero à esquerda se necessário
+        const dia = '01';       // Adiciona zero à esquerda se necessário
+        return `${ano}-${mes}-${dia}`;
+    }
+
+    document.getElementById('pesquisa').addEventListener('click', function() {
+    const pesquisa = document.getElementById('pesquisa').value
+    if (pesquisa == 'data') {
+        document.getElementById('id').classList.add('d-none')
+        document.getElementById('item').classList.add('d-none')
+        document.getElementById('data').classList.remove('d-none')
+    } 
+    if (pesquisa == 'id') {
+        document.getElementById('data').classList.add('d-none')
+        document.getElementById('item').classList.add('d-none')
+        document.getElementById('id').classList.remove('d-none')
+    }
+    if (pesquisa == 'item') {
+        document.getElementById('data').classList.add('d-none')
+        document.getElementById('id').classList.add('d-none')
+        document.getElementById('item').classList.remove('d-none')
+    }
+
+    })
+    // Define a data atual no campo de data
+    document.getElementById('datafim').value = obterDataAtual();
+    document.getElementById('dataNao').value = obterDataAtual2();
+    
+</script>
