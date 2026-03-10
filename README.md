@@ -8,6 +8,22 @@ Para fins de desenvolvimento e testes, foi criada uma **simulação de banco de 
 
 ---
 
+## 📸 Demonstração
+
+### Tela inicial
+![Tela inicial](./docs/home.png)
+
+### Cadastro de Palete
+![Cadastro de Palete](./docs/cadastro-palete.png)
+
+### Relação de itens
+![Relação de itens](./docs/relacao-itens.png)
+
+### Impressão de etiqueta
+![Impressão de etiqueta](./docs/impressao-etiqueta.png)
+
+---
+
 # 🚀 Tecnologias Utilizadas
 
 * Node.js
