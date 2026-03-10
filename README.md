@@ -14,16 +14,16 @@ Para fins de desenvolvimento e testes, foi criada uma **simulação de banco de 
 ![Tela inicial](./docs/home.png)
 
 ### Cadastro de Palete
-![Cadastro de Palete](./docs/criacaodepalete.png)
+![Cadastro de Palete](./docs/CriacaoDePalete.png)
 
 ### Relação de itens
-![Relação de itens](./docs/gestaodopalete.png)
+![Relação de itens](./docs/GestaoDoPalete.png)
 
 ### Impressão de relação de itens
-![Impressão de etiqueta](./docs/docimpressao.png)
+![Impressão de etiqueta](./docs/DocImpressao.png)
 
 ### Impressão de relação de palete com apenas 1 item
-![Impressão de etiqueta](./docs/docimpressao1Item.png)
+![Impressão de etiqueta](./docs/DocImpressao1Item.png)
 
 ---
 
